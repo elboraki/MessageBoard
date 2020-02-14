@@ -1,0 +1,9 @@
+<h2>Show Message</h2>
+<h2>Title: <%= @message.title %> </h2>
+<p>
+ <%= @message.description %>
+</p>
+     <%= link_to 'Edit', edit_message_path(@message),class: "btn btn-warning" %>
+     <%= link_to 'Delete', message_path(@message),class: "btn btn-danger" ,method: :delete,data:{confirm: "Are You sure "}%>
+    <%= link_to 'back', root_path,class: "btn btn-primary" %>
+
