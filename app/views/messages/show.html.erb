@@ -1,6 +1,8 @@
+<div class="col-md-8 col-md-offset-2 mt-2">
+
 <h2>Show Message</h2>
 <h2>Title: <%= @message.title %> </h2>
-<p>Posted by <%= @message.user.email %> <%=time_ago_in_words(@message.created_at) %> </p>
+<p>Posted by <%= @message.user.try(:email) %>  <%=time_ago_in_words(@message.created_at) %> </p>
 <p>
  <%= @message.description %>
 </p>
@@ -23,3 +25,4 @@
 <% end %>
 <%= link_to 'back', root_path,class: "btn btn-primary" %>
 
+</div>
