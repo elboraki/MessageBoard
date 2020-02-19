@@ -1,5 +1,6 @@
 <h2>Show Message</h2>
 <h2>Title: <%= @message.title %> </h2>
+<p>Posted by <%= @message.user.email %> <%=time_ago_in_words(@message.created_at) %> </p>
 <p>
  <%= @message.description %>
 </p>
@@ -8,12 +9,17 @@
 
 <h3>Reply to message :</h3>
 <p>
+<% if user_signed_in? %>
 <%= render 'comments/form' %>
+<% end %>
 </p>
 
 
-
-     <%= link_to 'Edit', edit_message_path(@message),class: "btn btn-warning" %>
-     <%= link_to 'Delete', message_path(@message),class: "btn btn-danger" ,method: :delete,data:{confirm: "Are You sure "}%>
-    <%= link_to 'back', root_path,class: "btn btn-primary" %>
+<% if user_signed_in? %>
+     <% if @message.user_id==current_user.id %>
+            <%= link_to 'Edit', edit_message_path(@message),class: "btn btn-warning" %>
+               <%= link_to 'Delete', message_path(@message),class: "btn btn-danger" ,method: :delete,data:{confirm: "Are You sure "}%>
+     <% end %>
+<% end %>
+<%= link_to 'back', root_path,class: "btn btn-primary" %>
 
